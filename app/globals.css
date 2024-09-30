@@ -14,6 +14,27 @@
   }
 }
 
+/* globals.css */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light mode by default */
+body {
+  background-color: white;
+  color: black;
+}
+
+/* Dark mode styling */
+.dark {
+  background-color: #121212;
+  color: white;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
