@@ -1,5 +1,6 @@
 import Navbar from "./components/navbar";
-import {PolkadotPageComponent} from "./components/polkadot-page";
+import { PolkadotPageComponent } from "./components/polkadot-page";
+
 export default function Home() {
   return (
     <>
