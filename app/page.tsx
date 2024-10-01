@@ -1,15 +1,12 @@
-// import PolkadotPage from "./Components/PolkadotPage";
-import NavBar from "./Components/Navbar";
-import Polkadot from "./Components/test";
-
+import {Navbar} from "./components/navbar";
+import {PolkadotPageComponent} from "./components/polkadot-page";
 export default function Home() {
   return (
     <>
       <div className=" container mx-auto overflow-hidden font-[family-name:var(--font-geist-sans)]">
-        <NavBar />
+        <Navbar />
         <main>
-          {/* <PolkadotPage /> */}
-          <Polkadot/>
+          <PolkadotPageComponent />
         </main>
       </div>
     </>
