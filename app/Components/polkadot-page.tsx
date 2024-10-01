@@ -13,9 +13,8 @@ import { Label } from "./ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { Input } from "./ui/input"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip"
-import { Navbar } from "./navbar"
 import { Result } from "./result"
-import { UniqueNFTs } from "./NFTs"
+// import { UniqueNFTs } from "./NFTs"
 
 
 const parachains = [
@@ -130,9 +129,9 @@ export function PolkadotPageComponent() {
 
   return (
     <TooltipProvider>
-      <div className="h-auto container bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900 dark:to-pink-900 overflow-hidden">
-        <Navbar />
-        <div className="container mx-auto p-4 pt-20 space-y-8">
+      <div className="h-auto container0 overflow-hidden">
+        {/* <Navbar /> */}
+        <div className="container mx-auto max-w-screen-lg p-4 pt-20 space-y-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}

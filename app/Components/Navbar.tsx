@@ -5,7 +5,7 @@ import { useTheme } from "next-themes"
 import { Button } from "./ui/button"
 import { useEffect, useState } from "react"
 
-export function Navbar() {
+export default function Navbar() {
   const { setTheme, theme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
