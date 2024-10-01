@@ -14,7 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { Input } from "./ui/input"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip"
 import { Result } from "./result"
-// import { UniqueNFTs } from "./NFTs"
+import { UniqueNFTs } from "./NFTs"
 
 
 const parachains = [
@@ -37,10 +37,12 @@ export function PolkadotPageComponent() {
   const [addresses, setAddresses] = useState<string[]>([])
   const [showFileInput, setShowFileInput] = useState(false)
   const [showResult, setShowResult] = useState(false)
+  const [collectionId, setCollectionId] = useState<number | null>(null)
+  const [customAddress, setCustomAddress] = useState<string>("")
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+  }, [connectedAccount]);
 
   useEffect(() => {
     if (connectedAccount) {
@@ -119,7 +121,7 @@ export function PolkadotPageComponent() {
   }
 
   const handleConvertClick = () => {
-    const addressesToConvert = showFileInput ? addresses : polkadotAddress.split("\n").filter(Boolean)
+    const addressesToConvert = addresses.length > 0 ? addresses : polkadotAddress.split("\n").filter(Boolean)
     handleConvert(addressesToConvert)
   }
 
@@ -130,7 +132,6 @@ export function PolkadotPageComponent() {
   return (
     <TooltipProvider>
       <div className="h-auto container0 overflow-hidden">
-        {/* <Navbar /> */}
         <div className="container mx-auto max-w-screen-lg p-4 pt-20 space-y-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -149,7 +150,7 @@ export function PolkadotPageComponent() {
                 ) : (
                   <div className="space-y-2">
                     <p>Connected Account: <strong>{connectedAccount.meta.name}</strong></p>
-                    <p>Polkadot Address: <strong>{polkadotAddress}</strong></p>
+                    <p>Polkadot Address: <strong>{connectedAddress}</strong></p>
                     <p>Converted Address: <strong>{convertedAddresses[0] || "Not converted yet"}</strong></p>
                     <Button variant="destructive" onClick={disconnectWallet} className="w-full">Disconnect Wallet</Button>
                   </div>
@@ -180,6 +181,27 @@ export function PolkadotPageComponent() {
                       ))}
                     </SelectContent>
                   </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="collection-id">NFT Collection ID:</Label>
+                  <Input
+                    id="collection-id"
+                    type="number"
+                    value={collectionId || ""}
+                    onChange={(e) => setCollectionId(parseInt(e.target.value, 10))}
+                    placeholder="Enter NFT Collection ID"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="custom-address">Custom Address (Optional):</Label>
+                  <Input
+                    id="custom-address"
+                    value={customAddress}
+                    onChange={(e) => setCustomAddress(e.target.value)}
+                    placeholder="Enter a custom address (optional)"
+                  />
                 </div>
 
                 <div className="flex items-center space-x-2">
@@ -242,11 +264,12 @@ export function PolkadotPageComponent() {
               />
             )}
           </AnimatePresence>
-          {/* <AnimatePresence>
+          <AnimatePresence>
               <UniqueNFTs
-                userAddress={convertedAddresses[0]}
+                userAddress={customAddress || convertedAddresses[0]} // Use custom address if provided, otherwise use converted address
+                collectionId={collectionId} // Pass collection ID to the NFT component
               />
-          </AnimatePresence> */}
+          </AnimatePresence>
         </div>
       </div>
     </TooltipProvider>
