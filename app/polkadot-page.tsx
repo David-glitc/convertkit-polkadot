@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
@@ -5,16 +6,16 @@ import { useState, useEffect } from "react"
 import type { InjectedAccountWithMeta } from "@polkadot/extension-inject/types"
 import Papa from "papaparse"
 import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "./ui/button"
-import { Textarea } from "./ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-import { Switch } from "./ui/switch"
-import { Label } from "./ui/label"
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
-import { Input } from "./ui/input"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip"
-import { Result } from "./result"
-import { UniqueNFTs } from "./NFTs"
+import { Button } from "./components/ui/button"
+import { Textarea } from "./components/ui/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./components/ui/select"
+import { Switch } from "./components/ui/switch"
+import { Label } from "./components/ui/label"
+import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card"
+import { Input } from "./components/ui/input"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./components/ui/tooltip"
+import { Result } from "./components/result"
+import { UniqueNFTs } from "./components/NFTs"
 
 
 const parachains = [
@@ -144,7 +145,7 @@ export function PolkadotPageComponent() {
               </CardHeader>
               <CardContent className="p-6 space-y-6">
                 {!connectedAccount ? (
-                  <Button onClick={connectWallet} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300">
+                  <Button onClick={connectWallet} className="w-1/3 mx-auto p-4 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300">
                     Connect Polkadot Wallet
                   </Button>
                 ) : (
@@ -152,7 +153,7 @@ export function PolkadotPageComponent() {
                     <p>Connected Account: <strong>{connectedAccount.meta.name}</strong></p>
                     <p>Polkadot Address: <strong>{connectedAddress}</strong></p>
                     <p>Converted Address: <strong>{convertedAddresses[0] || "Not converted yet"}</strong></p>
-                    <Button variant="destructive" onClick={disconnectWallet} className="w-full">Disconnect Wallet</Button>
+                    <Button variant="destructive" onClick={disconnectWallet} className="w-1/3 mx-auto">Disconnect Wallet</Button>
                   </div>
                 )}
 
